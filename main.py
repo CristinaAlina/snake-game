@@ -1,11 +1,13 @@
-# TODO: Detect collision with wall
-# TODO: Detect collision with tail
 
+# TODO: Detect collision with tail
 from turtle import Screen
 import time
 from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
+
+ALIGNMENT = "center"
+FONT = ("Courier", 13, "bold")
 
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -17,7 +19,6 @@ snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
 screen.listen()
-
 
 game_over = False
 while not game_over:
@@ -38,5 +39,12 @@ while not game_over:
         scoreboard.increase_score()
         snake.add_body_snake(False)
 
+    # detect collision with wall
+    if (snake.snake_head.xcor() > 295 or snake.snake_head.xcor() < -295 or
+            snake.snake_head.ycor() > 295 or snake.snake_head.ycor() < -295):
+        game_over = True
+
+
+scoreboard.end_of_game()
 
 screen.exitonclick()
