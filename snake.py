@@ -12,19 +12,25 @@ class Snake:
         self.body_snake = []
         # create the starting shape of snake with 3 squares
         for index_square in range(3):
-            self.add_body_snake()
+            self.add_body_snake(True)
         self.snake_head = self.body_snake[0]
         self.head_orientation = self.snake_head.heading()
 
-    def add_body_snake(self):
+    def add_body_snake(self, is_start_of_the_game):
+        """Create the snake if is_start_of_the_game = True or
+        add a new square to the snake body if start_of_the_game = False"""
         new_square = Turtle("square")
+        new_square.penup()
         new_square.pensize(20)
         new_square.color("DarkGreen", "DarkGreen")
-        new_square.penup()
         self.body_snake.append(new_square)
-        # for each new square added in the list, we need to positioned it starting with 0, by -MOVE_DISTANCE on x-axis
-        # according to its index from the list, to format a continue line of squares, one by one
-        new_square.goto((-MOVE_DISTANCE * self.body_snake.index(new_square)), 0)
+        if is_start_of_the_game:
+            # for each new square added in the list, we need to positioned it starting with 0,
+            # by -MOVE_DISTANCE on x-axis
+            # according to its index from the list, format a continue line of squares, one by one
+            new_square.goto((-MOVE_DISTANCE * self.body_snake.index(new_square)), 0)
+        else:
+            self.move()
 
     def move(self):
         for square_num in range(len(self.body_snake) - 1, 0, -1):
