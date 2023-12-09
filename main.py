@@ -16,17 +16,17 @@ screen.tracer(0)
 snake = Snake()
 food = Food()
 scoreboard = Scoreboard()
+
 screen.listen()
+screen.onkey(fun=snake.up, key="Up")
+screen.onkey(fun=snake.down, key="Down")
+screen.onkey(fun=snake.left, key="Left")
+screen.onkey(fun=snake.right, key="Right")
 
 game_over = False
 while not game_over:
     screen.update()
     time.sleep(0.1)
-
-    screen.onkey(fun=snake.up, key="Up")
-    screen.onkey(fun=snake.down, key="Down")
-    screen.onkey(fun=snake.left, key="Left")
-    screen.onkey(fun=snake.right, key="Right")
 
     scoreboard.update_scoreboard()
     snake.move()
