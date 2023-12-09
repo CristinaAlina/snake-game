@@ -1,5 +1,3 @@
-
-# TODO: Detect collision with tail
 from turtle import Screen
 import time
 from snake import Snake
@@ -44,6 +42,9 @@ while not game_over:
             snake.snake_head.ycor() > 295 or snake.snake_head.ycor() < -295):
         game_over = True
 
+    # detect collision with tail
+    if snake.verify_collision_tail():
+        game_over = True
 
 scoreboard.end_of_game()
 
