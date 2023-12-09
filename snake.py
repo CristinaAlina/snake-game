@@ -65,3 +65,10 @@ class Snake:
 
     def update_head_orientation(self):
         self.head_orientation = self.snake_head.heading()
+
+    def verify_collision_tail(self):
+        """Returns True if a collision with the snake tail is detected, or False otherwise"""
+        for square in self.body_snake[1:]:
+            if self.snake_head.distance(square.position()) < 2:
+                return True
+        return False
