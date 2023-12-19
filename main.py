@@ -28,7 +28,6 @@ while not game_over:
     screen.update()
     time.sleep(0.1)
 
-    scoreboard.update_scoreboard()
     snake.move()
 
     # if the snake head is within 15 pixels of the food, or even closer, relocate the food location
@@ -40,12 +39,13 @@ while not game_over:
     # detect collision with wall
     if (snake.snake_head.xcor() > 295 or snake.snake_head.xcor() < -295 or
             snake.snake_head.ycor() > 295 or snake.snake_head.ycor() < -295):
-        game_over = True
+        scoreboard.reset_score()
+        snake.reset_snake()
 
     # detect collision with tail
     if snake.verify_collision_tail():
-        game_over = True
+        scoreboard.reset_score()
+        snake.reset_snake()
 
-scoreboard.end_of_game()
 
 screen.exitonclick()
