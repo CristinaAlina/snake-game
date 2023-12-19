@@ -72,3 +72,13 @@ class Snake:
             if self.snake_head.distance(square.position()) < 2:
                 return True
         return False
+
+    def reset_snake(self):
+        for square in self.body_snake:
+            square.hideturtle()
+        self.body_snake = []
+        # create the starting shape of snake with 3 squares
+        for index_square in range(3):
+            self.add_body_snake(True)
+        self.snake_head = self.body_snake[0]
+        self.head_orientation = self.snake_head.heading()
